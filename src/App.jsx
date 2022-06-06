@@ -8,9 +8,9 @@ import ReviewPage from './pages/review-page.component';
 function App() {
   return (
     <Routes>
-      <Route path='/' element={<RootLayout />}>
+      <Route path="/" element={<RootLayout />}>
         <Route index element={<ReviewsPage />} />
-        <Route path=':id' element={<ReviewPage />} />
+        <Route path=":id" element={<ReviewPage />} />
       </Route>
     </Routes>
   );
