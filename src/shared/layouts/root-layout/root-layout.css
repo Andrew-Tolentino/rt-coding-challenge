@@ -1,0 +1,17 @@
+/* NavBar */
+
+.NavBarContainer {
+  background: #3357b3;
+  color: white;
+  padding-left: 6rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  vertical-align: middle;
+}
+
+/* MainContent */
+.MainContent {
+  padding-left: 6rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
