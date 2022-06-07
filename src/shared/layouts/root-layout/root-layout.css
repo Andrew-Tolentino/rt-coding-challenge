@@ -9,6 +9,11 @@
   vertical-align: middle;
 }
 
+.NavBarContainer > a {
+  text-decoration: none;
+  color: white;
+}
+
 /* MainContent */
 .MainContent {
   padding-left: 6rem;
