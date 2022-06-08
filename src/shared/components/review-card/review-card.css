@@ -1,7 +1,5 @@
 .ReviewCardContainer {
   background: white;
-  width: 350px;
-  height: 275px;
   padding: 0.5em;
   display: grid;
   grid-template-rows: 20% 60% 20%;

@@ -18,7 +18,8 @@ const ReviewCard = ({
   place,
   publishedDate,
   rating,
-  content
+  content,
+  onClick
 }) => {
   const GenerateRatings = () => {
     const ratings = [];
@@ -34,7 +35,13 @@ const ReviewCard = ({
   }
 
   return (
-    <div className="ReviewCardContainer">
+    <div 
+      className="ReviewCardContainer" 
+      onClick={() => {
+        if (onClick)
+          onClick();
+      }}
+    >
       <div id="review-card-header">
         <h2>{place}</h2>
         <div>
