@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import ReviewCard from '../../shared/components/review-card/review-card.component';
+import './reviews-page.css';
 
 // Replace with a api fetching structure
 import data from '../../data/stubs/reviews.json';
 
+/**
+ * TODOS
+ *  - Fix spacing between columns and container so it is symmetrical
+ *   - This needs to be responsive as well
+ * 
+ */
 const ReviewsPage = () => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [reviews, setReviews] = useState([]);
 
@@ -17,7 +26,7 @@ const ReviewsPage = () => {
           ratingId: id,
           author,
           place,
-          publishedDate: published_at,
+          publishedDate: new Date(published_at),
           rating,
           content
         };
@@ -25,7 +34,7 @@ const ReviewsPage = () => {
 
       setReviews(fetchedReviews);
       setLoading(false);
-    }, 5000);
+    }, 1000);
   }, []);
 
   if (loading) {
@@ -35,7 +44,7 @@ const ReviewsPage = () => {
   }
 
   return (
-    <>
+    <div className="ReviewsPageContainer">
       {reviews.map((review) => {
         const { ratingId, author, place, publishedDate, rating, content } = review;
         return (
@@ -46,11 +55,12 @@ const ReviewsPage = () => {
             place={place}
             publishedDate={publishedDate}
             rating={rating}
-            content={content}    
+            content={content}
+            onClick={() => navigate(`/${ratingId}`)} 
           />
         );
       })}
-    </>
+    </div>
   );
 }
 

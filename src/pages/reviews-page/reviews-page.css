@@ -1,0 +1,7 @@
+.ReviewsPageContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 8rem;
+  row-gap: 6rem;
+  background: red;
+}
