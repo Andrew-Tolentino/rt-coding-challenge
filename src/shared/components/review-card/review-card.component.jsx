@@ -11,9 +11,6 @@ import { getDateString } from '../../../utils/date.utils';
  *  - Add onlick method that navigates to the ReviewPage with the id of the review
  *  - Add shadowing
  *  - Use elipses for a long title / content?
- *  - Create icon for response
- *  - Add 0 in date for month and day when val <= 9 (make this a shared utils method)
- *  - For January, put 1 instead of 0
  */
 const ReviewCard = ({
   ratingId,
