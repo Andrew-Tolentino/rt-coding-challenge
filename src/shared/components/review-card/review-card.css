@@ -1,26 +1,26 @@
 .ReviewCardContainer {
   background: white;
-  width: 325px;
+  width: 350px;
   height: 275px;
-  padding: 0.5rem;
+  padding: 0.5em;
   display: grid;
   grid-template-rows: 20% 60% 20%;
   row-gap: 8px;
 }
 
-.ReviewCardContainer > #content {
+.ReviewCardContainer > #review-card-content {
   overflow-y: scroll;
   font-size: 1.1em;
   color: #696969;
 }
 
-.ReviewCardContainer > #footer {
+.ReviewCardContainer > #review-card-footer {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   font-size: 1em;
 }
 
-.ReviewCardContainer > #footer > #footer-date {
+.ReviewCardContainer > #review-card-footer > #review-card-footer-date {
   color: #A9A9A9;
 }

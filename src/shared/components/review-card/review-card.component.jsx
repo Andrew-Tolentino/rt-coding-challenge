@@ -4,6 +4,7 @@ import './review-card.css';
 import StarFilledIcon from '../../../assets/star_filled_icon.png';
 import StarOutlinedIcon from '../../../assets/star_outlined_icon.png';
 import ForumIcon from '../../../assets/forum_icon.png';
+import { getDateString } from '../../../utils/date.utils';
 
 /**
  * TODO
@@ -11,7 +12,8 @@ import ForumIcon from '../../../assets/forum_icon.png';
  *  - Add shadowing
  *  - Use elipses for a long title / content?
  *  - Create icon for response
- *  - Add 0 in date for month and day when val <= 9
+ *  - Add 0 in date for month and day when val <= 9 (make this a shared utils method)
+ *  - For January, put 1 instead of 0
  */
 const ReviewCard = ({
   ratingId,
@@ -21,8 +23,6 @@ const ReviewCard = ({
   rating,
   content
 }) => {
-  const date = new Date(publishedDate);
-
   const GenerateRatings = () => {
     const ratings = [];
     for (let i = 0; i < rating; i++) {
@@ -38,20 +38,20 @@ const ReviewCard = ({
 
   return (
     <div className="ReviewCardContainer">
-      <div id="header">
+      <div id="review-card-header">
         <h2>{place}</h2>
         <div>
           {GenerateRatings()}
         </div>
       </div>
 
-      <div id="content">
+      <div id="review-card-content">
         <p>{content}</p>
       </div>
 
-      <div id="footer">
+      <div id="review-card-footer">
         <p>{author}</p>
-        <p id="footer-date">{date.getMonth()}/{date.getDate()}/{date.getFullYear()}</p>
+        <p id="review-card-footer-date">{getDateString(publishedDate)}</p>
         <p><span><img src={ForumIcon} width="16px" height="16px" alt="forum" /></span></p>
       </div>
     </div>
