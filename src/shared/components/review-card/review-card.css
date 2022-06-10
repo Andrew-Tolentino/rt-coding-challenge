@@ -4,6 +4,7 @@
   padding: 2rem;
   display: flex;
   flex-direction: column;
+  min-height: 250px;
 }
 
 .ReviewCardContainer #review-header #ratings {
