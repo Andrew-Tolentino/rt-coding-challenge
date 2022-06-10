@@ -6,19 +6,19 @@
   row-gap: 8px;
 }
 
-.ReviewCardContainer > #review-card-content {
+.ReviewCardContainer #review-card-content {
   overflow-y: scroll;
   font-size: 1.1em;
   color: #696969;
 }
 
-.ReviewCardContainer > #review-card-footer {
+.ReviewCardContainer #review-card-footer {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   font-size: 1em;
 }
 
-.ReviewCardContainer > #review-card-footer > #review-card-footer-date {
+.ReviewCardContainer #review-card-footer #review-card-footer-date {
   color: #A9A9A9;
 }
