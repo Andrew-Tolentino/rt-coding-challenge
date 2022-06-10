@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import './review-page.css';
 import ReviewCard from '../../shared/components/review-card/review-card.component';
-import { getDateString } from '../../utils/date.utils';
-import { getReviewById, updateResponse } from '../../data/api/reviews.api';
+import ResponseCard from '../../shared/components/response-card/response-card.component';
+import { getReviewById, updateResponse, deleteResponse } from '../../data/api/reviews.api';
 
 const ReviewPage = () => {
   let { reviewId } = useParams();
   const [loading, setLoading] = useState(true);
   const [reviewDetails, setReviewDetails] = useState(null);
   const [responseText, setResponseText] = useState('');
+  const [nameText, setNameText] = useState('');
+
+  const [editResponseFlag, setEditResponseFlag] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
@@ -22,6 +24,8 @@ const ReviewPage = () => {
 
         if (review.response !== undefined) {
           setResponseText(review.response.message);
+          setNameText(review.response.name);
+          setEditResponseFlag(false);
         }
       }
 
@@ -30,8 +34,8 @@ const ReviewPage = () => {
   }, [reviewId]);
 
   const onResponseSubmit = (event) => {
-    if (responseText) {
-      updateResponse(reviewId, responseText);
+    if (responseText && nameText) {
+      updateResponse(reviewId, responseText, nameText);
 
       // Update locally
       const postedDate = new Date(Date.now());
@@ -39,12 +43,28 @@ const ReviewPage = () => {
         ...reviewDetails,
         response: {
           message: responseText,
+          name: nameText,
           postedDate
         }
       });
+
+      setEditResponseFlag(false);
     }
 
     event.preventDefault();
+  }
+
+  const onDeleteResponse = () => {
+    deleteResponse(reviewId);
+
+    // Update locally
+    setEditResponseFlag(true);
+    setResponseText('');
+    setNameText('');
+    setReviewDetails({
+      ...reviewDetails,
+      response: undefined
+    });
   }
 
   if (loading) {
@@ -57,7 +77,9 @@ const ReviewPage = () => {
   }
 
   const { author, place, publishedDate, rating, content, response } = reviewDetails;
-  if (response !== undefined) {
+  if (!editResponseFlag) {
+    const { message, name, postedDate } = response;
+    const menuItems = [{ title: 'Edit', onClick: () => setEditResponseFlag(true) }, { title: 'Delete', onClick: () => onDeleteResponse() }];
     return (
       <div className="ReviewPageContainer">
         <ReviewCard
@@ -70,8 +92,12 @@ const ReviewPage = () => {
         />
   
         <div style={{ marginTop: "4rem" }}>
-          <h2>{response.message}</h2>
-          <h2>{getDateString(response.postedDate)}</h2>
+          <ResponseCard 
+            message={message}
+            name={name}
+            postedDate={postedDate}
+            menuItems={menuItems}
+          />
         </div>
       </div>
     );
@@ -90,19 +116,27 @@ const ReviewPage = () => {
 
       <div style={{ marginTop: "4rem" }}>
         <form onSubmit={onResponseSubmit}>
-          <textarea 
+          <textarea
             type="text"
+            placeholder="Enter your response"
             value={responseText} 
             onChange={(event) => setResponseText(event.target.value)}
             onBlur={() => setResponseText(responseText.trim())}
             style={{ resize: "none", width: "100%", height: "150px" }}
           />
+          <input 
+            type="text"
+            placeholder="Enter your name"
+            value={nameText}
+            onChange={(event) => setNameText(event.target.value)}
+            onBlur={() => setNameText(nameText.trim())}
+          />
           <input type="submit" value="Submit" />
+          {response !== undefined && <button type="button" onClick={() => setEditResponseFlag(false)}>Cancel</button>}
         </form>
       </div>
     </div>
   );
-  
 }
 
 export default ReviewPage;
