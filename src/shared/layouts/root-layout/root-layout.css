@@ -5,11 +5,14 @@
   color: white;
   padding: 1rem 6rem;
   vertical-align: middle;
+  list-style-type: none;
 }
 
-.NavBarContainer > a {
+.NavBarContainer #nav-bar-link {
   text-decoration: none;
   color: white;
+  font-size: 1.5em;
+  font-weight: 500;
 }
 
 /* MainContent */

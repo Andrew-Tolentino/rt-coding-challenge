@@ -17,11 +17,11 @@ const RootLayout = () => {
 
 const NavBar = () => {
   return (
-    <div className="NavBarContainer">
-      <Link to="/">
-        <h2>Reviews</h2>
-      </Link>
-    </div>
+    <nav className="NavBarContainer">
+      <li>
+        <Link id="nav-bar-link" to="/">Reviews</Link>
+      </li>
+    </nav>
   );
 }
 
