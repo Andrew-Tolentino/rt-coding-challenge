@@ -27,7 +27,7 @@ const ReviewsPage = () => {
   return (
     <div className="ReviewsPageContainer">
       {reviews.map((review) => {
-        const { reviewId, author, place, publishedDate, rating, content } = review;
+        const { reviewId, author, place, publishedDate, rating, content, response } = review;
         return (
           <ReviewCard
             key={`${reviewId}_${publishedDate}`}
@@ -37,7 +37,9 @@ const ReviewsPage = () => {
             publishedDate={publishedDate}
             rating={rating}
             content={content}
-            onClick={() => navigate(`/${reviewId}`)} 
+            hasResponse={response !== undefined}
+            onClick={() => navigate(`/${reviewId}`)}
+            overflow={true}
           />
         );
       })}

@@ -1,24 +1,41 @@
 .ReviewCardContainer {
   background: white;
-  padding: 0.5em;
-  display: grid;
-  grid-template-rows: 20% 60% 20%;
-  row-gap: 8px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
 }
 
-.ReviewCardContainer #review-card-content {
-  overflow-y: scroll;
+.ReviewCardContainer #review-header #ratings {
+  margin-top: 0.5rem;
+}
+
+.ReviewCardContainer #review-content {
+  margin-top: 1rem;
+  padding-bottom: 2rem;
   font-size: 1.1em;
   color: #696969;
 }
 
-.ReviewCardContainer #review-card-footer {
+.ReviewCardContainer #review-content #overflow {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+.ReviewCardContainer .ReviewFooterContainer {
+  align-self: flex-end;
+}
+
+.ReviewCardContainer #review-footer {
+  margin-top: auto;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
   font-size: 1em;
 }
 
-.ReviewCardContainer #review-card-footer #review-card-footer-date {
+.ReviewCardContainer #review-footer #review-footer-date {
+  margin-left: 2rem;
   color: #A9A9A9;
 }
