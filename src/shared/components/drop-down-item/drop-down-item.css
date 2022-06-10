@@ -1,0 +1,14 @@
+.DropDownItemContainer:hover {
+  cursor: pointer;
+  color: darkgray;
+}
+
+.DropDownItemContainer:active {
+  color: gray;
+}
+
+.DropDownItemContainer #drop-down-item {
+  padding: 0.75rem;
+  border-bottom: 1px solid;
+  border-color: black;
+}

@@ -1,0 +1,10 @@
+#drop-down-button {
+  cursor: pointer;
+}
+
+#drop-down-items-container {
+  position: absolute;
+  overflow: hidden;
+  border-style: solid;
+  background: white;
+}
