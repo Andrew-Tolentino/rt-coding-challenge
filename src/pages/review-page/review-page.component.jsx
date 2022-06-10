@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import ReviewCard from '../../shared/components/review-card/review-card.component';
 import ResponseCard from '../../shared/components/response-card/response-card.component';
@@ -7,6 +7,8 @@ import { getReviewById, updateResponse, deleteResponse } from '../../data/api/re
 
 const ReviewPage = () => {
   let { reviewId } = useParams();
+  const navigate = useNavigate();
+
   const [loading, setLoading] = useState(true);
   const [reviewDetails, setReviewDetails] = useState(null);
   const [responseText, setResponseText] = useState('');
@@ -97,6 +99,7 @@ const ReviewPage = () => {
             name={name}
             postedDate={postedDate}
             menuItems={menuItems}
+            onIconClick={() => navigate('/')}
           />
         </div>
       </div>

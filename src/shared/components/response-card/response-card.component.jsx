@@ -10,7 +10,8 @@ const ResponseCard = ({
   message,
   name,
   postedDate,
-  menuItems // [{ title: string, onClick: function }]
+  menuItems, // [{ title: string, onClick: function }]
+  onIconClick
 }) => {
 
   const CreateDropDownMenuItems = () => {
@@ -30,7 +31,17 @@ const ResponseCard = ({
   return (
     <div className="ResponseCardContainer">
       <div id="left-side-bar">
-        <img id="reply-button" src={ReplyIcon} width="18px" height="18px" alt="reply" />
+        <img 
+          id="back-button" 
+          src={ReplyIcon} 
+          width="18px" 
+          height="18px" 
+          alt="reply" 
+          onClick={() => {
+            if (onIconClick)
+              onIconClick();
+          }}
+        />
       </div>
 
       <div id="content">

@@ -9,7 +9,7 @@
   padding-right: 2rem;
 }
 
-.ResponseCardContainer #left-side-bar #reply-button:hover {
+.ResponseCardContainer #left-side-bar #back-button:hover {
   cursor: pointer;
 }
 
