@@ -21,6 +21,7 @@ export const getReviews = () => {
     if (response !== undefined) {
       review.response = {
         message: response.message,
+        name: response.name,
         postedDate: new Date(response.posted_date)
       };
     }
@@ -58,6 +59,7 @@ export const getReviewById = (reviewId) => {
   if (response !== undefined) {
     review.response = {
       message: response.message,
+      name: response.name,
       postedDate: new Date(response.posted_date)
     };
   }
@@ -69,15 +71,16 @@ export const getReviewById = (reviewId) => {
  * Creates/Updates the response of a Review
  * 
  * @param {string} reviewId 
- * @param {string} message 
+ * @param {string} message
+ * @param {string} name
  */
-export const updateResponse = (reviewId, message) => {
+export const updateResponse = (reviewId, message, name) => {
   try {
     const rawReviews = JSON.parse(localStorage.getItem('reviews'));
     const reviewIndex = rawReviews.findIndex((r) => r.id === reviewId);
 
     if (reviewIndex < 0) {
-      throw Error(`Unable to find review with id - ${reviewId}`);
+      throw Error(`Unable to find Review with id - ${reviewId}`);
     }
 
     const date = new Date(Date.now());
@@ -86,6 +89,7 @@ export const updateResponse = (reviewId, message) => {
       ...review,
       response: {
         message,
+        name,
         posted_date: date.toString()
       }
     }
@@ -93,7 +97,39 @@ export const updateResponse = (reviewId, message) => {
     localStorage.setItem('reviews', JSON.stringify(rawReviews));
   }
   catch(error) {
-    console.log('Error when updating review', error);
+    console.log('Error when updating response for Review', error);
+  }
+}
+
+/**
+ * Delete a response of a specific Review
+ * 
+ * @param {string} reviewId 
+ */
+export const deleteResponse = (reviewId) => {
+  try {
+    const rawReviews = JSON.parse(localStorage.getItem('reviews'));
+    const reviewIndex = rawReviews.findIndex((r) => r.id === reviewId);
+
+    if (reviewIndex < 0) {
+      throw Error(`Unable to find Review with id - ${reviewId}`);
+    }
+
+    const review = rawReviews[reviewIndex];
+    const { id, author, place, published_at, rating, content } = review;
+    rawReviews[reviewIndex] = {
+      id,
+      author,
+      place,
+      published_at,
+      rating,
+      content
+    }
+
+    localStorage.setItem('reviews', JSON.stringify(rawReviews));
+  }
+  catch(error) {
+    console.log('Error when deleting response for Review', error);
   }
 }
 
