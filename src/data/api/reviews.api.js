@@ -7,7 +7,7 @@ import data from '../stubs/reviews.json';
  */
 export const getReviews = () => {
   const rawReviews = JSON.parse(localStorage.getItem('reviews'));
-  const reviews = rawReviews.map((val) => {
+  return rawReviews.map((val) => {
     const { id, author, place, published_at, rating, content, response } = val;
     const review = {
       reviewId: id,
@@ -28,8 +28,6 @@ export const getReviews = () => {
 
     return review;
   });
-
-  return reviews;
 }
 
 /**
