@@ -66,7 +66,7 @@ const ReviewCard = ({
       </div>
 
       <div id="review-footer">
-        <div style={{ display: "flex" }}>
+        <div id="review-footer-text-container">
           <p>{author}</p>
           <p id="review-footer-date">{getDateString(publishedDate)}</p>
         </div>

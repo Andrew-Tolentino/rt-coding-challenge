@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
+import './review-page.css';
 import ReviewCard from '../../shared/components/review-card/review-card.component';
 import ResponseCard from '../../shared/components/response-card/response-card.component';
 import { getReviewById, updateResponse, deleteResponse } from '../../data/api/reviews.api';
@@ -82,7 +83,7 @@ const ReviewPage = () => {
     const { message, name, postedDate } = response;
     const menuItems = [{ title: 'Edit', onClick: () => setEditResponseFlag(true) }, { title: 'Delete', onClick: () => onDeleteResponse() }];
     return (
-      <div className="ReviewPageContainer">
+      <div>
         <ReviewCard
           reviewId={reviewId}
           author={author}
@@ -92,7 +93,7 @@ const ReviewPage = () => {
           content={content}
         />
   
-        <div style={{ marginTop: "4rem" }}>
+        <div id="review-response-container">
           <ResponseCard 
             message={message}
             name={name}
@@ -116,15 +117,15 @@ const ReviewPage = () => {
         content={content}
       />
 
-      <div style={{ marginTop: "4rem" }}>
+      <div id="review-response-container">
         <form onSubmit={onResponseSubmit}>
           <textarea
+            id="response-input"
             type="text"
             placeholder="Enter your response"
             value={responseText} 
             onChange={(event) => setResponseText(event.target.value)}
             onBlur={() => setResponseText(responseText.trim())}
-            style={{ resize: "none", width: "100%", height: "150px" }}
           />
           <input 
             type="text"
