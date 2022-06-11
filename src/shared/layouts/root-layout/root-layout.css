@@ -21,3 +21,14 @@
   margin-top: 2.5rem;
   padding: 0 6rem;
 }
+
+@media only screen and (max-width: 1220px) {
+  .MainContent {
+    margin-top: 2.5rem;
+    padding: 0 2rem;
+  }
+
+  .NavBarContainer {
+    padding: 1rem 2rem;
+  }
+}

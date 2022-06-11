@@ -34,10 +34,11 @@
   display: flex;
   justify-content: space-between;
   font-size: 1em;
+  flex-wrap: wrap;
 }
 
 .ReviewCardContainer #review-footer #review-footer-date {
-  margin-left: 2rem;
+  margin-left: 1rem;
   color: #A9A9A9;
 }
 
