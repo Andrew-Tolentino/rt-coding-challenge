@@ -13,7 +13,6 @@ const ReviewPage = () => {
   const [reviewDetails, setReviewDetails] = useState(null);
   const [responseText, setResponseText] = useState('');
   const [nameText, setNameText] = useState('');
-
   const [editResponseFlag, setEditResponseFlag] = useState(true);
 
   useEffect(() => {
