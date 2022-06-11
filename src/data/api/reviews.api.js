@@ -1,12 +1,14 @@
 import data from '../stubs/reviews.json';
 
+const REVIEWS_KEY = 'reviews'
+
 /**
  * Returns all Reviews
  * 
  * @returns Array<Reviews>
  */
 export const getReviews = () => {
-  const rawReviews = JSON.parse(localStorage.getItem('reviews'));
+  const rawReviews = JSON.parse(localStorage.getItem(REVIEWS_KEY));
   return rawReviews.map((val) => {
     const { id, author, place, published_at, rating, content, response } = val;
     const review = {
@@ -37,7 +39,7 @@ export const getReviews = () => {
  * @returns {Object | undefined}  Review
  */
 export const getReviewById = (reviewId) => {
-  const rawReviews = JSON.parse(localStorage.getItem('reviews'));
+  const rawReviews = JSON.parse(localStorage.getItem(REVIEWS_KEY));
   const rawReview = rawReviews.find((r) => r.id === reviewId);
 
   // No review with reviewId was found
@@ -74,7 +76,7 @@ export const getReviewById = (reviewId) => {
  */
 export const updateResponse = (reviewId, message, name) => {
   try {
-    const rawReviews = JSON.parse(localStorage.getItem('reviews'));
+    const rawReviews = JSON.parse(localStorage.getItem(REVIEWS_KEY));
     const reviewIndex = rawReviews.findIndex((r) => r.id === reviewId);
 
     if (reviewIndex < 0) {
@@ -92,7 +94,7 @@ export const updateResponse = (reviewId, message, name) => {
       }
     }
 
-    localStorage.setItem('reviews', JSON.stringify(rawReviews));
+    localStorage.setItem(REVIEWS_KEY, JSON.stringify(rawReviews));
   }
   catch(error) {
     console.log('Error when updating response for Review', error);
@@ -106,7 +108,7 @@ export const updateResponse = (reviewId, message, name) => {
  */
 export const deleteResponse = (reviewId) => {
   try {
-    const rawReviews = JSON.parse(localStorage.getItem('reviews'));
+    const rawReviews = JSON.parse(localStorage.getItem(REVIEWS_KEY));
     const reviewIndex = rawReviews.findIndex((r) => r.id === reviewId);
 
     if (reviewIndex < 0) {
@@ -124,7 +126,7 @@ export const deleteResponse = (reviewId) => {
       content
     }
 
-    localStorage.setItem('reviews', JSON.stringify(rawReviews));
+    localStorage.setItem(REVIEWS_KEY, JSON.stringify(rawReviews));
   }
   catch(error) {
     console.log('Error when deleting response for Review', error);
@@ -133,8 +135,8 @@ export const deleteResponse = (reviewId) => {
 
 // For local storage purposes only
 const init = () => {
-  if (localStorage.getItem('reviews') === null) {
-    localStorage.setItem('reviews', JSON.stringify(data));
+  if (localStorage.getItem(REVIEWS_KEY) === null) {
+    localStorage.setItem(REVIEWS_KEY, JSON.stringify(data));
   }
 }
 
